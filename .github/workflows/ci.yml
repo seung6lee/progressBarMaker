@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4run
+        uses: actions/checkout@v3
 
       - name: List directory contents
         run: |
