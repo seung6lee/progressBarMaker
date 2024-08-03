@@ -24,4 +24,4 @@ jobs:
         run: bun install express
         
       - name: Run code
-        run: bun server.ts
+        run: bun /progressBarMaker/server.ts
