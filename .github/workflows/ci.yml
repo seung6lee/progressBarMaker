@@ -17,13 +17,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: List directory contents
-        run: |
-          echo "Listing contents of root directory:"
-          ls -R
-
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2.0.1
+
+      - name: List root directory contents
+        run: |
+          echo "Listing contents of root directory:"
+          ls -al
+
+      - name: List all directory contents
+        run: |
+          echo "Listing all contents recursively:"
+          ls -R
 
       - name: Install Express
         run: bun install express
