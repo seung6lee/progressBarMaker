@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bar Maker</title>
+    <link rel="stylesheet" href="/public/style.css">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+<body>
+    <h1>Progress Bar Maker</h1>
+
+    <form id="barSettings">
+        <div>
+            <label for="width">Bar Width (px)</label>
+            <input type="number" min="0" max="2000" value="500" placeholder="500" id="width">
+        </div>
+
+        <div>
+            <label for="height">Bar Height (px)</label>
+            <input type="number" min="0" max="100" value="25" placeholder="25" id="height">
+        </div>
+
+        <div>
+            <label for="percentage">Progress Percentage (%)</label>
+            <input type="number" min="0" max="100" value="62" placeholder="62" id="percentage">
+        </div>
+
+        <div>
+            <label for="fontSize">Font Size (px)</label>
+            <input type="number" min="0" max="100" value="12" placeholder="12" id="fontSize">
+        </div>
+
+        <div>
+            <label for="BGC">Bar Background Color</label>
+            <input type="color" value="#E2E2B6" id="BGC">
+        </div>
+
+        <div>
+            <label for="FGC">Bar Frontground Color</label>
+            <input type="color" value="#03346E" id="FGC">
+        </div>
+
+        <div>
+            <label for="FC">Font Color</label>
+            <input type="color" value="#FFFFFF" id="FC">
+        </div>
+
+        <div id="submit">Go</div>
+    </form>
+
+    <script src="/public/main.js"></script>
+</body>
+</html>

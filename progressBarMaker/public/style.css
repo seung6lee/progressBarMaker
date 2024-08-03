@@ -1,0 +1,77 @@
+body {
+    width: 100vw;
+    height: 100vh;
+
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+
+    
+}
+
+#canvas {
+    /* border: 1px solid black; */
+    margin-top: 50px;
+}
+
+#barSettings {
+    width: 280px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#barSettings > div {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#barSettings > div > label {
+    width: 200px;
+}
+
+#barSettings > div > input {
+    width: 80px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background: none;
+}
+
+#submit{
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 40px;
+    justify-content: center;
+
+    align-self: center;
+}
+
+#downloadBtn {
+    margin-top: 10px;
+
+    cursor: pointer;
+    background-color: #03346E;
+    border-radius: 10px;
+    width: 80px;
+    height: 36px;
+
+    color: #E2E2B6;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+}
