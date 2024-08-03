@@ -15,7 +15,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4run
+
+      - name: List directory contents
+        run: |
+          echo "Listing contents of root directory:"
+          ls -R
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2.0.1
