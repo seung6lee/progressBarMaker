@@ -25,12 +25,12 @@ So, I srarted to make a progress bar maker api web service.
 
 ## Example
 <div align="center">
-  <img width="100%" alt="Screenshot 2024-08-04 at 10 55 17 AM" src="https://github.com/user-attachments/assets/dbbe3256-e86a-42b4-82e5-a611ec02f344">
+  <img width="100%" alt="Screenshot 2024-08-04 at 10 55 17 AM" src="https://github.com/user-attachments/assets/288c871f-bb5c-489b-b09d-3527eeee4d5a">
   <i>Example Page</i>
 </div>
 
 # Progress
-62%: <img width="200" alt="62%" src="https://github.com/user-attachments/assets/d5889e49-dca1-4196-89ce-d3a06611939e">
+100%: <img width="200" alt="62%" src="https://github.com/user-attachments/assets/78ec8590-6528-4704-8bb7-3041282da0ae">
 
 - [x] Image generation
 - [x] Variables option
