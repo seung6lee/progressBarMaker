@@ -1,74 +1,23 @@
 <script lang="ts">
-    type color = string
+    let width = 500;
+    let height = 25;
+    let percentage = 62;
+    let fontSize = 12;
+    let BGC = "#E2E2B6";
+    let FGC = "#03346E";
+    let fontColor = "#FFFFFF";
 
-    function progressBar(width: number, height: number, percentage: number, fontSize: number, BGC: color, FGC: color, fontColor: color) {
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        canvas.id = "canvas";
-        const ctx = canvas.getContext("2d");
+    let resultShow = "none";
+    let resultImg: string;
 
-        const x = 0;
-        const y = 0;
-        const radius = height / 2;
+    const clicked = () => {
+        resultImg = `${window.location.origin}/api?w=${width}&h=${height}&p=${percentage}&fs=${fontSize}&bgc=${BGC}&fgc=${FGC}&fc=${fontColor}`;
+        resultShow = "flex";
+    };
 
-        function drawRoundedRech(x: number, y: number, width: number, height: number, radius: number, percentage: number) {
-            ctx.beginPath();
-            ctx.moveTo(x + radius, y);
-            ctx.lineTo(x + width * percentage - radius, y);
-            ctx.arc(
-                x + width * percentage - radius,
-                y + radius,
-                radius,
-                (Math.PI * 3) / 2,
-                Math.PI / 2,
-            );
-            ctx.lineTo(x + radius, y + height);
-            ctx.arc(
-                x + radius,
-                y + radius,
-                radius,
-                Math.PI / 2,
-                (Math.PI * 3) / 2,
-            );
-        }
-
-        // Background
-        ctx.fillStyle = BGC;
-        drawRoundedRech(x, y, width, height, radius, 1);
-        ctx.fill();
-
-        // Percentage
-        ctx.fillStyle = FGC;
-        drawRoundedRech(x, y, width, height, radius, percentage / 100);
-        ctx.fill();
-
-        const textWidth = ctx.measureText(`${percentage}%`).width;
-        ctx.font = `${fontSize}px Arial`;
-        ctx.fillStyle = fontColor;
-        ctx.textBaseline = "top";
-        ctx.fillText(
-            `${percentage}%`,
-            x + width / 2 - textWidth,
-            y + radius - fontSize / 2,
-        );
-
-        resultImg = canvas.toDataURL('image/png')
-        resultShow = "flex"
-    }
-
-    let width = 500
-    let height = 25
-    let percentage = 62
-    let fontSize = 12
-    let BGC = "#E2E2B6"
-    let FGC = "#03346E"
-    let fontColor = "#FFFFFF"
-
-    let resultShow = "none"
-    let resultImg: string
-
-    const clicked = () => progressBar(width, height, percentage, fontSize, BGC, FGC, fontColor)
+    const copy = () => {
+        navigator.clipboard.writeText(resultImg);
+    };
 </script>
 
 <main>
@@ -83,6 +32,7 @@
                 max="2000"
                 value="500"
                 placeholder="500"
+                step="0.1"
                 id="width"
                 on:input={(event) => (width = event.target.value)}
             />
@@ -96,6 +46,7 @@
                 max="100"
                 value="25"
                 placeholder="25"
+                step="0.1"
                 id="height"
                 on:input={(event) => (height = event.target.value)}
             />
@@ -109,6 +60,7 @@
                 max="100"
                 value="62"
                 placeholder="62"
+                step="0.1"
                 id="percentage"
                 on:input={(event) => (percentage = event.target.value)}
             />
@@ -122,6 +74,7 @@
                 max="100"
                 value="12"
                 placeholder="12"
+                step="0.1"
                 id="fontSize"
                 on:input={(event) => (fontSize = event.target.value)}
             />
@@ -162,7 +115,10 @@
 
     <figure style="display:{resultShow}">
         <img src={resultImg} alt="No Result" />
-        <a id="downloadBtn" href={resultImg} download="test">Download</a>
+        <div id="btns" style="--bgc: {BGC}; --fgc: {FGC}">
+            <a id="downloadBtn" href={resultImg} download="test">Download</a>
+            <button id="copyBtn" on:click={copy}>Copy URL</button>
+        </div>
     </figure>
 </main>
 
@@ -189,6 +145,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    #btns {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #btns > * {
+        margin: 0 5px;
     }
 
     #barSettings {
@@ -228,21 +193,34 @@
         align-self: center;
     }
 
-    #downloadBtn {
+    #downloadBtn,
+    #copyBtn {
+        box-sizing: border-box;
         margin-top: 10px;
 
         cursor: pointer;
-        background-color: #03346e;
+        background-color: var(--bgc);
         border-radius: 10px;
         width: 80px;
         height: 36px;
 
-        color: #e2e2b6;
+        color: var(--fgc);
 
         display: flex;
         align-items: center;
         justify-content: center;
 
         text-decoration: none;
+
+        border: none;
+
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    #downloadBtn:active,
+    #copyBtn:active {
+        border: 1px solid var(--fgc);
+        filter: brightness(50%);
     }
 </style>
