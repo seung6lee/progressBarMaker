@@ -1,4 +1,11 @@
 <script lang="ts">
+    import {
+        Utterances,
+        utterancesTheme,
+    } from "@codewithshin/svelte-utterances";
+    const theme = "github-light";
+    let reponame = "seung6lee/progressBarMaker";
+
     let width = 500;
     let height = 25;
     let percentage = 62;
@@ -20,112 +27,133 @@
     };
 </script>
 
-<main>
-    <h1>Progress Bar Maker</h1>
+<body>
+    <main>
+        <h1>Progress Bar Maker</h1>
 
-    <form id="barSettings">
-        <div>
-            <label for="width">Bar Width (px)</label>
-            <input
-                type="number"
-                min="0"
-                max="2000"
-                value="500"
-                placeholder="500"
-                step="0.1"
-                id="width"
-                on:input={(event) => (width = event.target.value)}
-            />
-        </div>
+        <form id="barSettings">
+            <div>
+                <label for="width">Bar Width (px)</label>
+                <input
+                    type="number"
+                    min="0"
+                    max="2000"
+                    value="500"
+                    placeholder="500"
+                    step="0.1"
+                    id="width"
+                    on:input={(event) => (width = event.target.value)}
+                />
+            </div>
 
-        <div>
-            <label for="height">Bar Height (px)</label>
-            <input
-                type="number"
-                min="0"
-                max="100"
-                value="25"
-                placeholder="25"
-                step="0.1"
-                id="height"
-                on:input={(event) => (height = event.target.value)}
-            />
-        </div>
+            <div>
+                <label for="height">Bar Height (px)</label>
+                <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value="25"
+                    placeholder="25"
+                    step="0.1"
+                    id="height"
+                    on:input={(event) => (height = event.target.value)}
+                />
+            </div>
 
-        <div>
-            <label for="percentage">Progress Percentage (%)</label>
-            <input
-                type="number"
-                min="0"
-                max="100"
-                value="62"
-                placeholder="62"
-                step="0.1"
-                id="percentage"
-                on:input={(event) => (percentage = event.target.value)}
-            />
-        </div>
+            <div>
+                <label for="percentage">Progress Percentage (%)</label>
+                <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value="62"
+                    placeholder="62"
+                    step="0.1"
+                    id="percentage"
+                    on:input={(event) => (percentage = event.target.value)}
+                />
+            </div>
 
-        <div>
-            <label for="fontSize">Font Size (px)</label>
-            <input
-                type="number"
-                min="0"
-                max="100"
-                value="12"
-                placeholder="12"
-                step="0.1"
-                id="fontSize"
-                on:input={(event) => (fontSize = event.target.value)}
-            />
-        </div>
+            <div>
+                <label for="fontSize">Font Size (px)</label>
+                <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value="12"
+                    placeholder="12"
+                    step="0.1"
+                    id="fontSize"
+                    on:input={(event) => (fontSize = event.target.value)}
+                />
+            </div>
 
-        <div>
-            <label for="BGC">Bar Background Color</label>
-            <input
-                type="color"
-                value="#E2E2B6"
-                id="BGC"
-                on:input={(event) => (BGC = event.target.value)}
-            />
-        </div>
+            <div>
+                <label for="BGC">Bar Background Color</label>
+                <input
+                    type="color"
+                    value="#E2E2B6"
+                    id="BGC"
+                    on:input={(event) => (BGC = event.target.value)}
+                />
+            </div>
 
-        <div>
-            <label for="FGC">Bar Frontground Color</label>
-            <input
-                type="color"
-                value="#03346E"
-                id="FGC"
-                on:input={(event) => (FGC = event.target.value)}
-            />
-        </div>
+            <div>
+                <label for="FGC">Bar Frontground Color</label>
+                <input
+                    type="color"
+                    value="#03346E"
+                    id="FGC"
+                    on:input={(event) => (FGC = event.target.value)}
+                />
+            </div>
 
-        <div>
-            <label for="FC">Font Color</label>
-            <input
-                type="color"
-                value="#FFFFFF"
-                id="FC"
-                on:input={(event) => (fontColor = event.target.value)}
-            />
-        </div>
+            <div>
+                <label for="FC">Font Color</label>
+                <input
+                    type="color"
+                    value="#FFFFFF"
+                    id="FC"
+                    on:input={(event) => (fontColor = event.target.value)}
+                />
+            </div>
 
-        <button id="submit" on:click={clicked}>Go</button>
-    </form>
+            <button id="submit" on:click={clicked}>Go</button>
+        </form>
 
-    <figure style="display:{resultShow}">
-        <img src={resultImg} alt="No Result" />
-        <div id="btns" style="--bgc: {BGC}; --fgc: {FGC}">
-            <a id="downloadBtn" href={resultImg} download="test">Download</a>
-            <button id="copyBtn" on:click={copy}>Copy URL</button>
-        </div>
-    </figure>
-</main>
+        <figure style="display:{resultShow}">
+            <img src={resultImg} alt="No Result" />
+            <div id="btns" style="--bgc: {BGC}; --fgc: {FGC}">
+                <a id="downloadBtn" href={resultImg} download="test">Download</a
+                >
+                <button id="copyBtn" on:click={copy}>Copy URL</button>
+            </div>
+        </figure>
+    </main>
+
+    <div style="height: 200px;">
+        <Utterances {reponame} {theme} />
+    </div>
+</body>
 
 <style>
-    main {
+    body {
         width: 100vw;
         height: 100vh;
+        overflow-x: hidden;
+    }
+
+    main {
+        /* position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); */
+
+        padding-top: 10vh;
+        width: 100vw;
+        height: 80vh;
+
+        /* position: fixed; */
 
         margin: 0;
 
